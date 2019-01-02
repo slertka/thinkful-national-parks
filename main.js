@@ -46,7 +46,7 @@ function displayResults(responseJSON) {
   $('#js-results').empty();
   for (let i=0; i<responseJSON.data.length; i++) {
     $('#js-results').append(`
-    <ul><h3><a href='${responseJSON.data[i].url}'>${responseJSON.data[i].fullName}</a></h3><p>${responseJSON.data[i].description}</p></ul>
+    <li><h3><a href='${responseJSON.data[i].url}'>${responseJSON.data[i].fullName}</a></h3><p>${responseJSON.data[i].description}</p></li>
   `)
   }
   $('#js-results').removeClass('hidden');

@@ -41,10 +41,35 @@ function generateStateString() {
   return stateString;
 }
 
+function displayResults(responseJSON) {
+  console.log(responseJSON);
+  $('#js-results').empty();
+  for (let i=0; i<responseJSON.data.length; i++) {
+    $('#js-results').append(`
+    <ul><h3><a href='${responseJSON.data[i].url}'>${responseJSON.data[i].fullName}</a></h3><p>${responseJSON.data[i].description}</p></ul>
+  `)
+  }
+  $('#js-results').removeClass('hidden');
+}
+
+function getNationalParks(states, maxlimit) {
+  maxlimit = $('form').find('.js-max-results').val();
+  const queryURL = searchURL + generateStateString() + `&limit=${maxlimit}`;
+  fetch(queryURL)
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+      throw new Error(response.statusText)
+    })
+    .then(responseJSON => displayResults(responseJSON))
+    .catch(err => console.log(err));
+  }
+
 function watchForm(){
   $('form').submit(event => {
     event.preventDefault();
-    generateStateString();
+    getNationalParks();
   })
 }
 

@@ -16,7 +16,7 @@
   <form>
     <section class='js-add-states'></section>
     <label for="max-results">Maximum Results:</label>
-    <select name="max-results">
+    <select name="max-results" class='js-max-results'>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -39,6 +39,9 @@
     </select><br>
     <input type="submit">
   </form>
+  <section>
+    <ol id='js-results' class='hidden'></ol>
+  </section>
   <script src="main.js"></script>
 </body>
 </html>

@@ -30,9 +30,21 @@ function addState(){
   })
 }
 
+function generateStateString() {
+  let stateArray = []
+  for (let i=1; i<=numStates; i++){
+    let state = $('form').find(`#${i}`).val();
+    stateArray.push(state);
+  }
+  let stateStringArray = stateArray.map(state => `stateCode=${state}`);
+  let stateString = stateStringArray.join('&');
+  return stateString;
+}
+
 function watchForm(){
   $('form').submit(event => {
     event.preventDefault();
+    generateStateString();
   })
 }
 
